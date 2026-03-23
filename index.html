@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7 Meses Contigo 💖</title>
+
+<!-- ═══════════════════════════════════════════
+     FUENTES - puedes cambiar en Google Fonts
+     ═══════════════════════════════════════════ -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════
+   VARIABLES - cambia colores aquí
+   ═══════════════════════════════════════════════ */
+:root {
+  --rosa:       #ff6b9d;
+  --rosa-claro: #ffb3cc;
+  --rojo:       #e8436b;
+  --coral:      #ff8fa3;
+  --crema:      #fff5f7;
+  --blanco:     #ffffff;
+  --dorado:     #ffd700;
+  --morado:     #c9a0dc;
+  --texto:      #4a2040;
+  --texto-suave:#8b5e7a;
+  --glass:      rgba(255,255,255,0.25);
+  --glass-borde:rgba(255,255,255,0.45);
+  --sombra:     rgba(232, 67, 107, 0.2);
+}
+
+/* ═══ RESET & BASE ═══ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--crema);
+  color: var(--texto);
+  overflow-x: hidden;
+  min-height: 100vh;
+  user-select: none;
+}
+
+/* ═══ PANTALLAS (SPA) ═══ */
+.pantalla {
+  display: none;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  animation: fadeSlideIn .7s ease forwards;
+}
+.pantalla.activa { display: flex; flex-direction: column; }
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════
+   PANTALLA 0 – INTRO / BIENVENIDA
+   ═══════════════════════════════════════ */
+#intro {
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ff8fa3 0%, #ffb3cc 40%, #c9a0dc 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fondo de partículas estrellas */
+.estrellas-fondo {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.estrella {
+  position: absolute;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: white;
+  animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s);
+  opacity: 0;
+}
+@keyframes twinkle {
+  0%,100%{ opacity:0; transform:scale(.5);}
+  50%    { opacity:1; transform:scale(1.5);}
+}
+
+.intro-card {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1.5px solid var(--glass-borde);
+  border-radius: 32px;
+  padding: 56px 48px;
+  text-align: center;
+  max-width: 480px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 24px 64px var(--sombra), inset 0 1px 0 rgba(255,255,255,.6);
+  animation: cardAppear 1.2s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+@keyframes cardAppear {
+  from { opacity:0; transform: scale(.7) translateY(40px); }
+  to   { opacity:1; transform: scale(1)  translateY(0); }
+}
+
+.emoji-grande { font-size: 72px; display:block; margin-bottom: 16px;
+  animation: heartbeat 1.8s ease-in-out infinite; }
+@keyframes heartbeat {
+  0%,100%{ transform: scale(1); }
+  25%    { transform: scale(1.15); }
+  50%    { transform: scale(1); }
+  75%    { transform: scale(1.1); }
+}
+
+.intro-card h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: var(--rojo);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.intro-card .subtitulo {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  color: var(--texto-suave);
+  margin-bottom: 28px;
+}
+.intro-card p {
+  font-size: .95rem;
+  color: var(--texto-suave);
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+/* Botón principal reutilizable */
+.btn-principal {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--rojo), var(--rosa));
+  color: white;
+  border: none; border-radius: 50px;
+  padding: 16px 40px;
+  font-size: 1rem; font-family: 'Lato', sans-serif; font-weight: 700;
+  letter-spacing: .5px;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(232,67,107,.45);
+  transition: all .3s cubic-bezier(.34,1.56,.64,1);
+  position: relative; overflow: hidden;
+}
+.btn-principal::before {
+  content:''; position:absolute; inset:0;
+  background: rgba(255,255,255,.15);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s ease;
+}
+.btn-principal:hover::before { transform: scaleX(1); }
+.btn-principal:hover { transform: translateY(-3px); box-shadow: 0 14px 42px rgba(232,67,107,.6); }
+.btn-principal:active { transform: translateY(0) scale(.97); }
+
+/* Botón glass secundario */
+.btn-glass {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid var(--glass-borde);
+  color: var(--rojo);
+  border-radius: 50px;
+  padding: 14px 36px;
+  font-size: .95rem; font-family: 'Lato', sans-serif; font-weight: 700;
+  cursor: pointer;
+  transition: all .3s ease;
+  box-shadow: 0 4px 16px rgba(232,67,107,.1);
+}
+.btn-glass:hover { background: rgba(255,255,255,.4); transform: translateY(-2px); }
+
+/* ═══════════════════════════════════════
+   PANTALLA 1 – QUIZ
+   ═══════════════════════════════════════ */
+#quiz {
+  background: linear-gradient(160deg, #fff0f5 0%, #ffe4ef 50%, #f5e0ff 100%);
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px 20px;
+  flex-direction: column;
+}
+
+/* Barra de progreso */
+.progreso-wrap {
+  width: 100%; max-width: 560px;
+  margin-bottom: 32px;
+}
+.progreso-info {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 10px;
+  font-size: .8rem; color: var(--texto-suave); font-weight: 700;
+  letter-spacing: .5px; text-transform: uppercase;
+}
+.progreso-barra {
+  height: 6px; border-radius: 10px;
+  background: rgba(232,67,107,.15);
+  overflow: hidden;
+}
+.progreso-fill {
+  height: 100%; border-radius: 10px;
+  background: linear-gradient(90deg, var(--rosa), var(--rojo));
+  transition: width .6s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 2px 8px rgba(232,67,107,.4);
+}
+
+/* Tarjeta de pregunta */
+.quiz-card {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1.5px solid var(--glass-borde);
+  border-radius: 28px;
+  padding: 44px 40px;
+  max-width: 560px;
+  width: 100%;
+  box-shadow: 0 16px 48px var(--sombra);
+  position: relative;
+  overflow: hidden;
+}
+.quiz-card::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,107,157,.12), transparent 70%);
+  pointer-events: none;
+}
+
+.pregunta-num {
+  font-size: .75rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--rosa);
+  margin-bottom: 16px;
+}
+.pregunta-texto {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 3.5vw, 1.65rem);
+  line-height: 1.4;
+  color: var(--texto);
+  margin-bottom: 32px;
+}
+
+/* Opciones */
+.opciones-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media(max-width: 480px){ .opciones-grid{ grid-template-columns: 1fr; } }
+
+.opcion-btn {
+  background: rgba(255,255,255,.55);
+  border: 1.5px solid rgba(255,182,207,.4);
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-size: .9rem; font-family: 'Lato', sans-serif; font-weight: 600;
+  color: var(--texto);
+  cursor: pointer;
+  text-align: left;
+  transition: all .25s cubic-bezier(.34,1.56,.64,1);
+  position: relative; overflow: hidden;
+}
+.opcion-btn:hover {
+  background: rgba(255,255,255,.8);
+  border-color: var(--rosa);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(255,107,157,.2);
+}
+.opcion-btn.correcta {
+  background: linear-gradient(135deg, rgba(100,220,150,.25), rgba(50,200,100,.15));
+  border-color: #4caf78;
+  pointer-events: none;
+  animation: correctaPulse .5s ease;
+}
+.opcion-btn.incorrecta {
+  background: rgba(255,200,200,.3);
+  border-color: #f48fb1;
+  pointer-events: none;
+  animation: shake .4s ease;
+}
+.opcion-btn.disabled { pointer-events: none; opacity: .5; }
+
+@keyframes correctaPulse {
+  0%  { transform: scale(1); }
+  50% { transform: scale(1.06); }
+  100%{ transform: scale(1); }
+}
+@keyframes shake {
+  0%,100%{ transform: translateX(0); }
+  25%    { transform: translateX(-8px); }
+  75%    { transform: translateX(8px); }
+}
+
+/* Feedback */
+.feedback-box {
+  margin-top: 24px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  font-size: .9rem; font-weight: 600;
+  text-align: center;
+  animation: feedbackIn .4s cubic-bezier(.34,1.56,.64,1);
+  display: none;
+}
+.feedback-box.correcto {
+  background: rgba(76,175,120,.15);
+  color: #2d7a50;
+  border: 1px solid rgba(76,175,120,.3);
+}
+.feedback-box.incorrecto {
+  background: rgba(255,182,193,.3);
+  color: var(--rojo);
+  border: 1px solid rgba(255,107,157,.3);
+}
+@keyframes feedbackIn {
+  from { opacity:0; transform: scale(.8) translateY(10px); }
+  to   { opacity:1; transform: scale(1) translateY(0); }
+}
+
+.btn-siguiente {
+  margin-top: 28px;
+  display: none;
+}
+
+/* Partículas de corazones sobre el quiz */
+.particula-quiz {
+  position: fixed;
+  pointer-events: none;
+  font-size: 1.4rem;
+  animation: floatUp 1.2s ease forwards;
+  z-index: 999;
+}
+@keyframes floatUp {
+  0%   { opacity:1; transform: translateY(0) scale(1); }
+  100% { opacity:0; transform: translateY(-120px) scale(1.6) rotate(20deg); }
+}
+
+/* ═══════════════════════════════════════
+   RESULTADO QUIZ
+   ═══════════════════════════════════════ */
+#resultado-quiz {
+  background: linear-gradient(135deg, #ff8fa3 0%, #c9a0dc 100%);
+  align-items: center; justify-content: center;
+}
+.resultado-card {
+  background: var(--glass);
+  backdrop-filter: blur(24px);
+  border: 1.5px solid var(--glass-borde);
+  border-radius: 32px;
+  padding: 56px 44px;
+  max-width: 500px; width: 90%;
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(0,0,0,.15);
+  animation: cardAppear 1s cubic-bezier(.34,1.56,.64,1);
+}
+.puntaje-grande {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 10vw, 5rem);
+  color: var(--rojo);
+  margin: 16px 0;
+  line-height: 1;
+}
+.resultado-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: var(--texto);
+  margin-bottom: 12px;
+}
+.resultado-card p {
+  color: var(--texto-suave);
+  font-size: .95rem; line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+/* ═══════════════════════════════════════
+   PANTALLA 2 – JUEGO CORAZONES
+   ═══════════════════════════════════════ */
+#juego {
+  background: radial-gradient(ellipse at center, #1a0533 0%, #0d001a 100%);
+  align-items: center; justify-content: flex-start;
+  flex-direction: column;
+  padding: 24px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.juego-header {
+  text-align: center; margin-bottom: 20px; z-index: 10;
+}
+.juego-header h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--rosa-claro);
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  margin-bottom: 4px;
+}
+.juego-header p {
+  color: rgba(255,179,204,.6);
+  font-size: .85rem;
+}
+
+.juego-stats {
+  display: flex; gap: 24px;
+  margin-bottom: 16px; z-index: 10;
+}
+.stat-box {
+  background: rgba(255,107,157,.1);
+  border: 1px solid rgba(255,107,157,.3);
+  border-radius: 14px;
+  padding: 12px 24px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+.stat-label {
+  font-size: .7rem; color: var(--rosa-claro); text-transform: uppercase;
+  letter-spacing: 1.5px; font-weight: 700; margin-bottom: 4px;
+}
+.stat-valor {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; color: white; line-height: 1;
+}
+
+/* Área de juego */
+#area-juego {
+  width: 100%; max-width: 640px;
+  height: 50vh; min-height: 280px;
+  position: relative;
+  border: 1px solid rgba(255,107,157,.2);
+  border-radius: 24px;
+  background: rgba(255,255,255,.03);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+  cursor: crosshair;
+  overflow: hidden;
+}
+
+/* Corazón del juego */
+.corazon-juego {
+  position: absolute;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  cursor: pointer;
+  animation: floatCorazon var(--dur, 4s) ease-in-out infinite var(--delay,0s);
+  transition: transform .1s ease;
+  filter: drop-shadow(0 0 8px rgba(255,107,157,.6));
+  z-index: 11;
+  will-change: transform;
+}
+.corazon-juego:hover { transform: scale(1.3); }
+.corazon-juego.capturado {
+  animation: capturar .4s ease forwards !important;
+  pointer-events: none;
+}
+
+@keyframes floatCorazon {
+  0%,100%{ transform: translateY(0) rotate(-5deg) scale(1); }
+  30%    { transform: translateY(-18px) rotate(3deg) scale(1.05); }
+  60%    { transform: translateY(-8px) rotate(-3deg) scale(.97); }
+}
+@keyframes capturar {
+  0%  { transform: scale(1); opacity:1; }
+  50% { transform: scale(2.2); opacity:.6; }
+  100%{ transform: scale(0) rotate(45deg); opacity:0; }
+}
+
+/* Burst al capturar */
+.burst {
+  position: absolute;
+  pointer-events: none;
+  font-size: 1rem;
+  animation: burst .7s ease forwards;
+  z-index: 20;
+}
+@keyframes burst {
+  0%  { opacity:1; transform: translate(0,0) scale(1); }
+  100%{ opacity:0; transform: translate(var(--bx,0), var(--by,-60px)) scale(.4); }
+}
+
+/* Meta de corazones */
+.meta-barra-wrap { width:100%; max-width:640px; z-index:10; margin-top:14px; }
+.meta-label {
+  font-size:.75rem; color:rgba(255,179,204,.7);
+  display:flex; justify-content:space-between;
+  margin-bottom:6px; font-weight:700; text-transform:uppercase; letter-spacing:1px;
+}
+.meta-barra {
+  height:8px; border-radius:10px;
+  background: rgba(255,107,157,.15);
+  overflow:hidden;
+}
+.meta-fill {
+  height:100%; border-radius:10px;
+  background: linear-gradient(90deg, var(--rosa), var(--rojo), var(--dorado));
+  background-size: 200%;
+  transition: width .4s ease;
+  animation: shimmer 2s linear infinite;
+  box-shadow: 0 2px 12px rgba(255,107,157,.6);
+}
+@keyframes shimmer {
+  0%  { background-position: 200% center; }
+  100%{ background-position: 0% center; }
+}
+
+/* Mensaje inicio juego */
+.juego-inicio-msg {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:12px; z-index: 15;
+}
+.juego-inicio-msg p { color: rgba(255,179,204,.7); font-size:.9rem; }
+
+/* ═══════════════════════════════════════
+   PANTALLA 3 – FINAL
+   ═══════════════════════════════════════ */
+#final {
+  background: radial-gradient(ellipse at 30% 40%, #2d0040, #0a001a 70%);
+  align-items: center; justify-content: center;
+  flex-direction: column;
+  padding: 40px 20px;
+  position: relative; overflow: hidden;
+}
+
+/* Fondo de estrellas animadas */
+#canvas-estrellas {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Botón especial de la carta */
+.btn-carta {
+  background: linear-gradient(135deg, #e8436b, #ff6b9d, #c9a0dc);
+  background-size: 200%;
+  color: white;
+  border: none; border-radius: 50px;
+  padding: 22px 56px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-style: italic;
+  cursor: pointer;
+  animation: shimmer 3s linear infinite, pulsarBtn 2s ease-in-out infinite;
+  box-shadow: 0 0 40px rgba(232,67,107,.5), 0 12px 40px rgba(232,67,107,.4);
+  position: relative; z-index: 5;
+  transition: all .3s ease;
+  letter-spacing: .5px;
+}
+.btn-carta:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 60px rgba(232,67,107,.7), 0 16px 50px rgba(232,67,107,.5);
+}
+@keyframes pulsarBtn {
+  0%,100%{ box-shadow: 0 0 40px rgba(232,67,107,.5), 0 12px 40px rgba(232,67,107,.4); }
+  50%    { box-shadow: 0 0 70px rgba(232,67,107,.8), 0 16px 60px rgba(232,67,107,.6); }
+}
+
+.final-titulo {
+  font-family: 'Dancing Script', cursive;
+  color: rgba(255,179,204,.7);
+  font-size: clamp(.9rem, 2.5vw, 1.2rem);
+  margin-bottom: 32px;
+  text-align: center;
+  z-index: 5; position: relative;
+  letter-spacing: 1px;
+}
+
+/* Carta romántica */
+#carta-wrap {
+  display: none;
+  max-width: 600px; width: 95%;
+  z-index: 10; position: relative;
+  animation: cartaEntrada .8s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes cartaEntrada {
+  from{ opacity:0; transform: scale(.85) translateY(30px); }
+  to  { opacity:1; transform: scale(1) translateY(0); }
+}
+
+.carta-papel {
+  background: rgba(255,245,250,.97);
+  border: 1px solid rgba(255,182,207,.5);
+  border-radius: 24px;
+  padding: 48px 44px;
+  box-shadow:
+    0 32px 80px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 0 0 1px rgba(255,107,157,.08);
+  position: relative;
+  overflow: hidden;
+}
+.carta-papel::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:4px;
+  background: linear-gradient(90deg, var(--rosa), var(--rojo), var(--morado), var(--rosa));
+  background-size: 200%;
+  animation: shimmer 3s linear infinite;
+}
+
+.carta-saludo {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: var(--rojo);
+  margin-bottom: 20px;
+}
+.carta-cuerpo {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(.9rem, 2.2vw, 1rem);
+  line-height: 1.9;
+  color: var(--texto);
+  min-height: 200px;
+  white-space: pre-wrap;
+}
+.cursor-tipo {
+  display: inline-block;
+  width: 2px; height: 1.1em;
+  background: var(--rosa);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: cursorBlink .7s ease-in-out infinite;
+}
+@keyframes cursorBlink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+
+.carta-firma {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  color: var(--rojo);
+  text-align: right;
+  margin-top: 24px;
+  display: none;
+}
+
+/* Pregunta final */
+#pregunta-final {
+  display: none;
+  text-align: center;
+  margin-top: 32px;
+  z-index: 10; position: relative;
+  animation: fadeSlideIn .8s ease;
+}
+#pregunta-final h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+  color: white;
+  margin-bottom: 24px;
+  line-height: 1.4;
+  text-shadow: 0 2px 20px rgba(232,67,107,.5);
+}
+.btns-finales {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+}
+.btn-final {
+  background: linear-gradient(135deg, var(--rojo), var(--morado));
+  color: white; border: none; border-radius: 50px;
+  padding: 18px 40px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(232,67,107,.4);
+  transition: all .3s cubic-bezier(.34,1.56,.64,1);
+}
+.btn-final:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 14px 48px rgba(232,67,107,.7); }
+.btn-final.alt { background: linear-gradient(135deg, var(--rosa), var(--rosa-claro)); }
+
+/* Lluvia de corazones / confetti final */
+.lluvia-corazon {
+  position: fixed;
+  top: -60px;
+  pointer-events: none;
+  font-size: var(--size, 1.5rem);
+  animation: lluviaFall var(--dur, 4s) linear var(--delay, 0s) forwards;
+  z-index: 9999;
+}
+@keyframes lluviaFall {
+  0%  { transform: translateY(0) rotate(0deg); opacity:1; }
+  100%{ transform: translateY(110vh) rotate(720deg); opacity:.3; }
+}
+
+/* Control de música */
+#btn-musica {
+  position: fixed; bottom: 20px; right: 20px;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid var(--glass-borde);
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 20px var(--sombra);
+  display: flex; align-items: center; justify-content: center;
+  transition: all .3s ease;
+  display: none;
+}
+#btn-musica:hover { transform: scale(1.1); }
+
+/* Pantalla de transición épica */
+#transicion-epica {
+  position: fixed; inset: 0;
+  background: radial-gradient(ellipse at center, #ff6b9d, #c9a0dc, #1a0533);
+  z-index: 500;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+#transicion-epica h2 {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  font-size: clamp(1.6rem, 5vw, 3rem);
+  text-align: center;
+  animation: pulsarTexto 1s ease-in-out infinite;
+}
+@keyframes pulsarTexto {
+  0%,100%{ transform: scale(1); }
+  50%    { transform: scale(1.05); }
+}
+.emoji-transicion {
+  font-size: clamp(3rem, 10vw, 5rem);
+  animation: heartbeat 1s ease infinite;
+}
+
+/* Utilidades */
+.oculto { display: none !important; }
+.centrado { text-align: center; }
+.mt-8  { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+
+/* Responsivo general */
+@media(max-width: 500px){
+  .quiz-card, .intro-card, .resultado-card { padding: 32px 24px; }
+  .carta-papel { padding: 36px 24px; }
+  .juego-stats { gap: 12px; }
+  .stat-box { padding: 10px 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     AUDIO - cambia el src con tu canción
+     ═══════════════════════════════════════ -->
+<!--
+  Para agregar música:
+  1. Descarga una canción en formato MP3
+  2. Reemplaza "TU_CANCION.mp3" con la ruta o URL del archivo
+  3. Quita los comentarios del elemento <audio>
+-->
+<!----> <audio id="audio-fondo" loop preload="auto" autoplay>
+  <source src="te amo.mp3" type="audio/mpeg">
+</audio> 
+
+<!-- Botón de música -->
+<button id="btn-musica" title="Música">🎵</button>
+
+<!-- ╔══════════════════════════════════╗
+     ║  PANTALLA 0 - INTRO             ║
+     ╚══════════════════════════════════╝ -->
+<section id="intro" class="pantalla activa">
+  <div class="estrellas-fondo" id="estrellas-intro"></div>
+
+  <div class="intro-card">
+    <span class="emoji-grande">💖</span>
+
+    <!-- ══ CAMBIA EL TÍTULO Y SUBTÍTULO ══ -->
+    <h1>Para Ti, Mi Amor</h1>
+    <p class="subtitulo">7 meses de pura felicidad ✨</p>
+
+    <!-- ══ CAMBIA ESTE MENSAJE DE BIENVENIDA ══ -->
+    <p>
+      Preparé algo muy especial para celebrar estos 7 meses increíbles juntos.
+      Son tres sorpresas seguidas... ¿estás lista para descubrirlas? 💝
+    </p>
+
+    <button class="btn-principal" onclick="irA('quiz')">
+      ¡Comenzar! 🌸
+    </button>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════╗
+     ║  PANTALLA 1 - QUIZ              ║
+     ╚══════════════════════════════════╝ -->
+<section id="quiz" class="pantalla">
+  <div class="progreso-wrap">
+    <div class="progreso-info">
+      <span id="progreso-texto">Pregunta 1 de 10</span>
+      <span id="progreso-pct">0%</span>
+    </div>
+    <div class="progreso-barra">
+      <div class="progreso-fill" id="progreso-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="quiz-card" id="quiz-card">
+    <div class="pregunta-num" id="pregunta-num">Pregunta 1</div>
+    <div class="pregunta-texto" id="pregunta-texto"></div>
+
+    <div class="opciones-grid" id="opciones-grid"></div>
+
+    <div class="feedback-box" id="feedback-box"></div>
+
+    <div class="btn-siguiente">
+      <button class="btn-principal" id="btn-siguiente" onclick="siguientePregunta()">
+        Siguiente 💫
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════╗
+     ║  PANTALLA - RESULTADO QUIZ      ║
+     ╚══════════════════════════════════╝ -->
+<section id="resultado-quiz" class="pantalla">
+  <div class="resultado-card">
+    <span style="font-size:56px">🏆</span>
+    <div class="puntaje-grande" id="puntaje-texto">10/10</div>
+    <h2 id="resultado-titulo">¡Perfecta! 💖</h2>
+    <p id="resultado-desc">Me conoces mejor que nadie en este mundo.</p>
+    <button class="btn-principal" onclick="irA('juego')">
+      Siguiente sorpresa 🎮
+    </button>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════╗
+     ║  PANTALLA 2 - JUEGO CORAZONES   ║
+     ╚══════════════════════════════════╝ -->
+<section id="juego" class="pantalla">
+  <div class="juego-header">
+    <!-- ══ CAMBIA ESTE TEXTO ══ -->
+    <h2>💖 Atrapa mi Amor</h2>
+    <p>Haz clic en los corazones para atraparlos</p>
+  </div>
+
+  <div class="juego-stats">
+    <div class="stat-box">
+      <div class="stat-label">Capturados</div>
+      <div class="stat-valor" id="contador-corazones">0</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Meta</div>
+      <!-- ══ CAMBIA EL NÚMERO META ══ -->
+      <div class="stat-valor" id="meta-numero">20</div>
+    </div>
+  </div>
+
+  <div id="area-juego">
+    <div class="juego-inicio-msg" id="juego-inicio">
+      <span style="font-size:3rem">💝</span>
+      <p>Toca para empezar</p>
+      <button class="btn-principal" onclick="iniciarJuego()">¡Jugar! 🎮</button>
+    </div>
+  </div>
+
+  <div class="meta-barra-wrap">
+    <div class="meta-label">
+      <span>Progreso</span>
+      <span id="meta-pct-texto">0 / 20</span>
+    </div>
+    <div class="meta-barra">
+      <div class="meta-fill" id="meta-fill" style="width:0%"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════╗
+     ║  PANTALLA 3 - FINAL             ║
+     ╚══════════════════════════════════╝ -->
+<section id="final" class="pantalla">
+  <canvas id="canvas-estrellas"></canvas>
+
+  <!-- ══ CAMBIA ESTE MENSAJE ══ -->
+  <p class="final-titulo">Una última sorpresa para ti... 🌙</p>
+
+  <button class="btn-carta" id="btn-carta" onclick="abrirCarta()">
+    Haz clic aquí 💖
+  </button>
+
+  <!-- Carta romántica -->
+  <div id="carta-wrap">
+    <div class="carta-papel">
+      <!-- ══ CAMBIA EL SALUDO ══ -->
+      <div class="carta-saludo">Mi amor hermosa,</div>
+      <div class="carta-cuerpo" id="carta-cuerpo"><span class="cursor-tipo"></span></div>
+      <!-- ══ CAMBIA LA FIRMA ══ -->
+      <div class="carta-firma" id="carta-firma">Con todo mi amor, Tu Guapo 💖</div>
+    </div>
+  </div>
+
+  <!-- Pregunta final -->
+  <div id="pregunta-final">
+    <!-- ══ CAMBIA LA PREGUNTA FINAL ══ -->
+    <h3>"¿Quieres seguir conmigo<br>mucho, mucho más tiempo?" 💝</h3>
+    <div class="btns-finales">
+      <button class="btn-final" onclick="finalizarApp()">Sí 💖</button>
+      <button class="btn-final alt" onclick="finalizarApp()">Obvio sí 😍</button>
+    </div>
+  </div>
+</section>
+
+<!-- Transición épica entre juego y final -->
+<div id="transicion-epica">
+  <div class="emoji-transicion">💝</div>
+  <h2>¡Llegaste a tu sorpresa!</h2>
+</div>
+
+<script>
+  
+/* ═══════════════════════════════════════════════════
+   CONFIGURACIÓN PRINCIPAL
+   Aquí puedes personalizar TODO el contenido
+   ═══════════════════════════════════════════════════ */
+
+// ══════════════════════════════════
+// PREGUNTAS DEL QUIZ
+// Cambia las preguntas, opciones y respuestas correctas (índice empezando en 0)
+// ══════════════════════════════════
+const PREGUNTAS = [
+  {
+    texto: "¿Cuál es mi comida favorita?",
+opciones: ["🍕 Pizza", "🍟 Salchipapa", "🍔 Hamburguesa", "🥩 Filete de carne", "🥗 Ensalada de remolacha", "🍗 Pollo", "🍦 Helado"],
+    correcta: 4,                            // ← índice de la respuesta correcta
+    msgCorrecto: "¡Exacto! ¡Me conoces perfectamente! 🌟",
+    msgIncorrecto: "Jajaja casi... ¡es la Ensalada de remolacha! 🥗 ¡Pero me sigues amando igual! 💕"
+  },
+  {
+    texto: "¿Cuál es mi película favorita de todos los tiempos?",
+    opciones: ["🚗 Cars", "🚀 Interstellar", "🤖 Wall-E", "🧌 Shrek", "💥 Una pareja explosiva"],
+    correcta: 3,
+    msgCorrecto: "¡Sí! 🧌 Shrek, porque aunque no sea un príncipe perfecto, contigo me siento el más afortunado del mundo 💚✨",
+    msgIncorrecto: "¡Es I🧌 Shrek! Pero tú eres mi película favorita 💖"
+  },
+  {
+    texto: "¿Qué cosa de ti me enamoró desde el primer día?",
+    opciones: ["😄 Tu sonrisa", "💬 Tu forma de hablar", "👀 Tu mirada", "Todas las anteriores"],
+    correcta: 3,
+    msgCorrecto: "¡Exactamente! ¡Todo de ti me tiene enamorado! 💘",
+    msgIncorrecto: "¡La respuesta es TODAS! Porque todo de ti es perfecto 💖"
+  },
+  {
+    texto: "¿Cuál es mi color favorito?",
+    opciones: ["💙 Azul", "💜 Morado", "🖤 Negro", "💚 Verde"],
+    correcta: 1,
+    msgCorrecto: "¡Sabías! ¡Eres increíble! 💜",
+    msgIncorrecto: "Casi 😅 era el morado 💜, un color tan bonito como todo lo que siento por ti 💕",
+  },
+  {
+    texto: "¿Qué es lo que más me gusta hacer con nosotros dos?",
+    opciones: ["🎬 Ver películas juntos", "🚶 Caminar sin rumbo", "🍽️ Comer rico", "Todo lo anterior 💖"],
+    correcta: 3,
+    msgCorrecto: "¡Porque todo contigo es mi plan favorito! 💕",
+    msgIncorrecto: "¡Es todo lo anterior! Cada momento a tu lado es mi lugar favorito del mundo 🌍"
+  },
+  {
+  texto: "¿Cuál es uno de nuestros planes favoritos juntos?",
+  opciones: ["🎬 Ver series juntos", "🍽️ Salir a comer", "😴 Dormir todo el día", "Todo lo anterior 💖"],
+  correcta: 3,
+  msgCorrecto: "¡Obvio! Porque cualquier plan contigo se vuelve especial 💕",
+  msgIncorrecto: "¡Es todo! 😅 Porque contigo hasta lo más simple se siente increíble 💖"
+},
+{
+  texto: "¿Cómo describiría nuestra relación?",
+  opciones: ["😴 Aburrida", "😡 Dramática", "💖 Tranquila, cariñosa y divertida", "🤷‍♂️ Normal"],
+  correcta: 2,
+  msgCorrecto: "¡Sí! 💖 Porque contigo todo se siente bonito, tranquilo y lleno de amor ✨",
+  msgIncorrecto: "Nooo 😅 es 💖 tranquila, cariñosa y divertida… justo como tú y como lo nuestro ✨"
+},
+{
+  texto: "¿Qué siento cuando estoy contigo?",
+  opciones: ["😐 Normal", "😅 Nervios", "💖 Paz y felicidad", "😴 Sueño"],
+  correcta: 2,
+  msgCorrecto: "Exacto 💖 contigo todo se siente en calma y bonito ✨",
+  msgIncorrecto: "Casi 😅 pero es 💖 paz y felicidad… porque contigo todo está bien ✨"
+},
+{
+  texto: "¿Qué hace especiales nuestros momentos juntos?",
+  opciones: ["💬 Nuestras conversaciones", "😂 Las risas", "💖 Cómo nos sentimos juntos", "Todo lo anterior ✨"],
+  correcta: 3,
+  msgCorrecto: "¡Sí! 💖 Porque todo contigo tiene algo especial ✨",
+  msgIncorrecto: "Es todo 😅 porque cada detalle contigo vale demasiado 💖"
+},
+{
+  texto: "¿Qué eres tú para mí?",
+  opciones: ["🙂 Alguien más", "😅 Mi compañera", "💖 Mi persona favorita", "🤔 Un misterio"],
+  correcta: 2,
+  msgCorrecto: "💖 Siempre tú… eres lo mejor que tengo ✨",
+  msgIncorrecto: "Nooo 😅 eres 💖 mi persona favorita, sin duda alguna ✨"
+},
+];
+
+// ══════════════════════════════════
+// CARTA ROMÁNTICA
+// Escribe aquí el mensaje para ella (puedes usar \n para saltos de línea)
+// ══════════════════════════════════
+const CARTA_TEXTO = `Hace 7 meses comenzó algo que cambió mi vida para siempre.
+
+Cada día a tu lado me recuerda que el amor de verdad sí existe. En tus ojos encontré mi lugar favorito en el universo, y en tu risa, la melodía que siempre quise escuchar.
+
+No tengo palabras suficientemente bonitas para describir lo que siento cuando estás conmigo. Solo sé que contigo todo tiene más color, más sentido... más vida.
+
+Gracias por elegirme cada día. Por tus buenos días llenos de amor, por tus abrazos que me curan todo, por hacer de los momentos más simples los más especiales.
+
+Eres mi persona favorita. Mi calma y mi felicidad. Mi hogar.
+
+Estos 7 meses son solo el comienzo de todo lo que quiero vivir contigo. Quiero seguir eligiéndote, quiero seguir construyendo contigo, quiero seguir amándote más y más cada día.
+
+Te amo con todo lo que soy.`;
+
+// ══════════════════════════════════
+// CONFIGURACIÓN DEL JUEGO
+// ══════════════════════════════════
+const META_CORAZONES = 20;   // ← cuántos corazones debe atrapar
+const TIPOS_CORAZON = ['💖', '💝', '💗', '💕', '💓', '💞', '❤️', '🌸'];
+
+/* ═══════════════════════════════════════════════════
+   SISTEMA DE NAVEGACIÓN
+   ═══════════════════════════════════════════════════ */
+function irA(id) {
+  document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
+  const pantalla = document.getElementById(id);
+  pantalla.classList.add('activa');
+
+  // Acciones especiales al entrar a cada pantalla
+  if (id === 'quiz') iniciarQuiz();
+  if (id === 'final') iniciarFinal();
+}
+
+/* ═══════════════════════════════════════════════════
+   ESTRELLAS DE FONDO (intro)
+   ═══════════════════════════════════════════════════ */
+function crearEstrellas(contenedor, cantidad) {
+  const el = document.getElementById(contenedor);
+  if (!el) return;
+  for (let i = 0; i < cantidad; i++) {
+    const e = document.createElement('div');
+    e.className = 'estrella';
+    e.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      --d:${2+Math.random()*4}s;
+      --delay:${Math.random()*4}s;
+      width:${2+Math.random()*4}px;
+      height:${2+Math.random()*4}px;
+    `;
+    el.appendChild(e);
+  }
+}
+crearEstrellas('estrellas-intro', 60);
+
+/* ═══════════════════════════════════════════════════
+   QUIZ
+   ═══════════════════════════════════════════════════ */
+let preguntaActual = 0;
+let puntaje = 0;
+let respondida = false;
+
+function iniciarQuiz() {
+  preguntaActual = 0;
+  puntaje = 0;
+  mostrarPregunta();
+}
+
+function mostrarPregunta() {
+  respondida = false;
+  const p = PREGUNTAS[preguntaActual];
+  const total = PREGUNTAS.length;
+
+  // Progreso
+  const pct = Math.round((preguntaActual / total) * 100);
+  document.getElementById('progreso-fill').style.width = pct + '%';
+  document.getElementById('progreso-pct').textContent = pct + '%';
+  document.getElementById('progreso-texto').textContent = `Pregunta ${preguntaActual + 1} de ${total}`;
+  document.getElementById('pregunta-num').textContent = `Pregunta ${preguntaActual + 1}`;
+
+  // Animación de entrada de la tarjeta
+  const card = document.getElementById('quiz-card');
+  card.style.opacity = '0';
+  card.style.transform = 'translateX(40px)';
+  setTimeout(() => {
+    card.style.transition = 'all .45s cubic-bezier(.34,1.56,.64,1)';
+    card.style.opacity = '1';
+    card.style.transform = 'translateX(0)';
+  }, 50);
+
+  document.getElementById('pregunta-texto').textContent = p.texto;
+
+  // Opciones
+  const grid = document.getElementById('opciones-grid');
+  grid.innerHTML = '';
+  p.opciones.forEach((op, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opcion-btn';
+    btn.textContent = op;
+    btn.onclick = () => responder(i);
+    btn.style.animationDelay = (i * .08) + 's';
+    grid.appendChild(btn);
+  });
+
+  // Feedback y siguiente
+  const fb = document.getElementById('feedback-box');
+  fb.style.display = 'none';
+  document.querySelector('.btn-siguiente').style.display = 'none';
+}
+
+function responder(indice) {
+  if (respondida) return;
+  respondida = true;
+
+  const p = PREGUNTAS[preguntaActual];
+  const botones = document.querySelectorAll('.opcion-btn');
+  const fb = document.getElementById('feedback-box');
+
+  botones.forEach(b => b.classList.add('disabled'));
+
+  if (indice === p.correcta) {
+    botones[indice].classList.add('correcta');
+    puntaje++;
+    fb.className = 'feedback-box correcto';
+    fb.textContent = '✨ ' + p.msgCorrecto;
+    lanzarParticulasQuiz();
+  } else {
+    botones[indice].classList.add('incorrecta');
+    botones[p.correcta].classList.add('correcta');
+    fb.className = 'feedback-box incorrecto';
+    fb.textContent = '💕 ' + p.msgIncorrecto;
+  }
+
+  fb.style.display = 'block';
+  document.querySelector('.btn-siguiente').style.display = 'block';
+}
+
+function siguientePregunta() {
+  preguntaActual++;
+  if (preguntaActual >= PREGUNTAS.length) {
+    mostrarResultadoQuiz();
+  } else {
+    mostrarPregunta();
+  }
+}
+
+function mostrarResultadoQuiz() {
+  document.getElementById('puntaje-texto').textContent = puntaje + '/' + PREGUNTAS.length;
+
+  let titulo, desc;
+  const ratio = puntaje / PREGUNTAS.length;
+  if (ratio === 1) {
+    titulo = '¡Perfecta! Me conoces completamente 💖';
+    desc = 'No me sorprende... eres exactamente la persona con quien quiero pasar todo mi tiempo. ¡Me conoces mejor que nadie!';
+  } else if (ratio >= 0.6) {
+    titulo = '¡Casi perfecta! 💕';
+    desc = 'Qué bien me conoces, amor. Cada día aprendemos más el uno del otro y eso es lo más bonito del mundo.';
+  } else {
+    titulo = '¡Siempre hay más por descubrir! 🌸';
+    desc = 'Eso es lo bonito de nosotros... todavía nos queda tanto por conocer el uno del otro. ¡Y tengo muchas ganas de que lo descubras todo!';
+  }
+
+  document.getElementById('resultado-titulo').textContent = titulo;
+  document.getElementById('resultado-desc').textContent = desc;
+
+  irA('resultado-quiz');
+  lanzarLluviaCorazones(8);
+}
+
+/* Partículas flotantes al acertar */
+function lanzarParticulasQuiz() {
+  for (let i = 0; i < 6; i++) {
+    const el = document.createElement('div');
+    el.className = 'particula-quiz';
+    el.textContent = TIPOS_CORAZON[Math.floor(Math.random() * TIPOS_CORAZON.length)];
+    el.style.cssText = `
+      left: ${20 + Math.random()*60}%;
+      top: ${30 + Math.random()*40}%;
+      animation-delay: ${i * .08}s;
+    `;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 1400);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   JUEGO DE CORAZONES
+   ═══════════════════════════════════════════════════ */
+let corazonesContador = 0;
+let juegoActivo = false;
+let intervalosJuego = [];
+
+function iniciarJuego() {
+  document.getElementById('juego-inicio').style.display = 'none';
+  corazonesContador = 0;
+  juegoActivo = true;
+  actualizarContadorJuego();
+  generarCorazones();
+}
+
+function generarCorazones() {
+  if (!juegoActivo) return;
+
+  // Velocidad progresiva
+  const velocidad = Math.max(0.6, 1.2 - (corazonesContador * 0.04));
+  const cantidad = Math.min(3 + Math.floor(corazonesContador / 4), 8);
+
+  for (let i = 0; i < cantidad; i++) {
+    setTimeout(() => {
+      if (!juegoActivo) return;
+      crearCorazonJuego();
+    }, i * 300);
+  }
+
+  const intervalo = setTimeout(() => generarCorazones(), 2200 * velocidad);
+  intervalosJuego.push(intervalo);
+}
+
+function crearCorazonJuego() {
+  const area = document.getElementById('area-juego');
+  const c = document.createElement('div');
+  c.className = 'corazon-juego';
+  c.textContent = TIPOS_CORAZON[Math.floor(Math.random() * TIPOS_CORAZON.length)];
+
+  const dur = 2 + Math.random() * 3;
+  const x = 5 + Math.random() * 85;
+  const y = 5 + Math.random() * 80;
+
+  c.style.cssText = `
+    left: ${x}%;
+    top: ${y}%;
+    --dur: ${dur}s;
+    --delay: ${Math.random() * .5}s;
+    font-size: ${1.4 + Math.random() * .8}rem;
+  `;
+
+  c.onclick = (e) => capturarCorazon(c, e);
+  area.appendChild(c);
+
+  // Auto-eliminar corazones que no se capturan
+  setTimeout(() => {
+    if (c.parentNode) {
+      c.style.opacity = '0';
+      c.style.transition = 'opacity .4s ease';
+      setTimeout(() => c.remove(), 400);
+    }
+  }, (dur + 2) * 1000);
+}
+
+function capturarCorazon(el, e) {
+  if (!juegoActivo || el.classList.contains('capturado')) return;
+
+  el.classList.add('capturado');
+  corazonesContador++;
+
+  // Efecto burst
+  crearBurst(e.clientX, e.clientY);
+  actualizarContadorJuego();
+
+  setTimeout(() => {
+    if (el.parentNode) el.remove();
+  }, 500);
+
+  if (corazonesContador >= META_CORAZONES) {
+    juegoActivo = false;
+    intervalosJuego.forEach(clearTimeout);
+    setTimeout(transicionEpica, 600);
+  }
+}
+
+function crearBurst(x, y) {
+  const emojis = ['💖', '✨', '💕', '🌸', '⭐'];
+  for (let i = 0; i < 5; i++) {
+    const b = document.createElement('div');
+    b.className = 'burst';
+    b.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    const angle = (i / 5) * Math.PI * 2;
+    const dist = 40 + Math.random() * 40;
+    b.style.cssText = `
+      left: ${x}px; top: ${y}px;
+      position: fixed;
+      --bx: ${Math.cos(angle) * dist}px;
+      --by: ${Math.sin(angle) * dist - 60}px;
+      z-index: 9998;
+    `;
+    document.body.appendChild(b);
+    setTimeout(() => b.remove(), 800);
+  }
+}
+
+function actualizarContadorJuego() {
+  document.getElementById('contador-corazones').textContent = corazonesContador;
+  document.getElementById('meta-numero').textContent = META_CORAZONES;
+  const pct = Math.min(100, (corazonesContador / META_CORAZONES) * 100);
+  document.getElementById('meta-fill').style.width = pct + '%';
+  document.getElementById('meta-pct-texto').textContent = corazonesContador + ' / ' + META_CORAZONES;
+}
+
+function transicionEpica() {
+  const t = document.getElementById('transicion-epica');
+  t.style.display = 'flex';
+  lanzarLluviaCorazones(12);
+
+  setTimeout(() => {
+    t.style.opacity = '0';
+    t.style.transition = 'opacity .8s ease';
+    setTimeout(() => {
+      t.style.display = 'none';
+      t.style.opacity = '1';
+      irA('final');
+    }, 900);
+  }, 2600);
+}
+
+/* ═══════════════════════════════════════════════════
+   PANTALLA FINAL
+   ═══════════════════════════════════════════════════ */
+function iniciarFinal() {
+  requestAnimationFrame(iniciarCanvasEstrellas);
+  document.getElementById('btn-carta').style.display = 'inline-flex';
+  document.getElementById('carta-wrap').style.display = 'none';
+  document.getElementById('pregunta-final').style.display = 'none';
+  document.getElementById('carta-firma').style.display = 'none';
+}
+
+function abrirCarta() {
+  document.getElementById('btn-carta').style.display = 'none';
+  document.getElementById('carta-wrap').style.display = 'block';
+
+  // Efecto máquina de escribir
+  const contenedor = document.getElementById('carta-cuerpo');
+  const cursor = contenedor.querySelector('.cursor-tipo');
+  let i = 0;
+  let textoNode = document.createTextNode('');
+  contenedor.insertBefore(textoNode, cursor);
+
+  const velocidadTipo = 28; // ms por carácter (más bajo = más rápido)
+
+  function escribir() {
+    if (i < CARTA_TEXTO.length) {
+      textoNode.textContent += CARTA_TEXTO[i];
+      i++;
+      // Scroll automático mientras escribe
+      contenedor.parentElement.scrollTop = contenedor.parentElement.scrollHeight;
+      setTimeout(escribir, velocidadTipo);
+    } else {
+      // Termina de escribir
+      cursor.style.display = 'none';
+      document.getElementById('carta-firma').style.display = 'block';
+      setTimeout(mostrarPreguntaFinal, 1200);
+    }
+  }
+
+  setTimeout(escribir, 600);
+}
+
+function mostrarPreguntaFinal() {
+  const pf = document.getElementById('pregunta-final');
+  pf.style.display = 'block';
+  // Scroll hacia la pregunta
+  setTimeout(() => pf.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
+}
+
+function finalizarApp() {
+  lanzarLluviaCorazones(30);
+  // Confetti extra con múltiples oleadas
+  setTimeout(() => lanzarLluviaCorazones(20), 800);
+  setTimeout(() => lanzarLluviaCorazones(25), 1600);
+}
+
+/* ═══════════════════════════════════════════════════
+   LLUVIA DE CORAZONES
+   ═══════════════════════════════════════════════════ */
+function lanzarLluviaCorazones(cantidad) {
+  for (let i = 0; i < cantidad; i++) {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'lluvia-corazon';
+      el.textContent = TIPOS_CORAZON[Math.floor(Math.random() * TIPOS_CORAZON.length)];
+      el.style.cssText = `
+        left: ${Math.random() * 100}%;
+        --dur: ${3 + Math.random() * 3}s;
+        --delay: 0s;
+        --size: ${1 + Math.random() * 1.5}rem;
+      `;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 6500);
+    }, i * 120);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   CANVAS DE ESTRELLAS (pantalla final)
+   ═══════════════════════════════════════════════════ */
+let cieloFinalIniciado = false;
+
+function iniciarCanvasEstrellas() {
+  const canvas = document.getElementById('canvas-estrellas');
+  const final = document.getElementById('final');
+  const ctx = canvas.getContext('2d');
+
+  if (cieloFinalIniciado) {
+    const rect = final.getBoundingClientRect();
+    canvas.width = Math.max(1, Math.floor(rect.width));
+    canvas.height = Math.max(1, Math.floor(rect.height));
+    return;
+  }
+
+  cieloFinalIniciado = true;
+
+  function resize() {
+    const rect = final.getBoundingClientRect();
+    canvas.width = Math.max(1, Math.floor(rect.width));
+    canvas.height = Math.max(1, Math.floor(rect.height));
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const estrellas = Array.from({ length: 200 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.5,
+    alpha: Math.random(),
+    vel: 0.003 + Math.random() * 0.008
+  }));
+
+  // Partículas flotantes
+  const particulas = Array.from({ length: 18 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: (Math.random() - .5) * .4,
+    vy: -0.2 - Math.random() * .4,
+    r: 1 + Math.random() * 2,
+    alpha: .4 + Math.random() * .6
+  }));
+
+  function dibujar() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Estrellas estáticas
+    estrellas.forEach(s => {
+      s.alpha += s.vel;
+      if (s.alpha > 1 || s.alpha < 0) s.vel *= -1;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
+      ctx.fill();
+    });
+
+    // Partículas rosas
+    particulas.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,107,157,${p.alpha * .4})`;
+      ctx.fill();
+    });
+
+    requestAnimationFrame(dibujar);
+  }
+  dibujar();
+}
+
+/* ═══════════════════════════════════════════════════
+   MÚSICA (opcional)
+   ═══════════════════════════════════════════════════ */
+const audio = document.getElementById('audio-fondo');
+const btnMusica = document.getElementById('btn-musica');
+let musicaActiva = false;
+let reintentoAutoplay = false;
+
+function actualizarBotonMusica() {
+  musicaActiva = audio && !audio.paused;
+  if (btnMusica) btnMusica.textContent = musicaActiva ? '🔇' : '🎵';
+}
+
+function prepararReintentoMusica() {
+  if (!audio || reintentoAutoplay) return;
+  reintentoAutoplay = true;
+
+  const reintentar = async () => {
+    document.removeEventListener('click', reintentar);
+    document.removeEventListener('touchstart', reintentar);
+    document.removeEventListener('keydown', reintentar);
+    reintentoAutoplay = false;
+
+    try {
+      await audio.play();
+      actualizarBotonMusica();
+    } catch (error) {
+      console.warn('El navegador sigue bloqueando la música automática.', error);
+    }
+  };
+
+  document.addEventListener('click', reintentar, { once: true });
+  document.addEventListener('touchstart', reintentar, { once: true });
+  document.addEventListener('keydown', reintentar, { once: true });
+}
+
+async function intentarAutoplay() {
+  if (!audio) return;
+
+  try {
+    await audio.play();
+    actualizarBotonMusica();
+  } catch (error) {
+    actualizarBotonMusica();
+    prepararReintentoMusica();
+  }
+}
+
+if (audio && btnMusica) {
+  btnMusica.style.display = 'flex';
+  audio.addEventListener('play', actualizarBotonMusica);
+  audio.addEventListener('pause', actualizarBotonMusica);
+
+  btnMusica.onclick = async () => {
+    if (musicaActiva) {
+      audio.pause();
+    } else {
+      try {
+        await audio.play();
+      } catch (error) {
+        console.warn('No se pudo reproducir la música.', error);
+      }
+    }
+  };
+
+  intentarAutoplay();
+  window.addEventListener('load', intentarAutoplay, { once: true });
+  actualizarBotonMusica();
+}
+</script>
+</body>
+</html>
